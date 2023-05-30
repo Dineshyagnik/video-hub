@@ -1,28 +1,30 @@
 import React from 'react';
-import { BiMenuAltLeft } from "react-icons/bi";
 import {
-  Button,
   Drawer,
   DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
   DrawerHeader,
   DrawerOverlay,
-  HStack,
-  VStack,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
   useDisclosure,
+  VStack,
+  HStack,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { BiMenuAltLeft } from 'react-icons/bi';
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Button
-        pos={"fixed"}
-        top={'2'}
-        left={'2'}
-        colorScheme='purple'
+        zIndex={'overlay'}
+        pos={'fixed'}
+        top={'4'}
+        left={'4'}
+        colorScheme="purple"
         p={'0'}
         w={'10'}
         h={'10'}
@@ -31,28 +33,48 @@ const Header = () => {
       >
         <BiMenuAltLeft size={'20'} />
       </Button>
-      <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
+
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>
-            VIDEO HUB
-          </DrawerHeader>
+          <DrawerHeader>VIDEO HUB</DrawerHeader>
           <DrawerBody>
             <VStack alignItems={'flex-start'}>
-              <Button onClick={onClose} variant={'ghost'} colorScheme='purple'>
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
                 <Link to={'/'}>Home</Link>
               </Button>
-              <Button onClick={onClose} variant={'ghost'} colorScheme='purple'>
+
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
                 <Link to={'/videos'}>Videos</Link>
               </Button>
-              <Button onClick={onClose} variant={'ghost'} colorScheme='purple'>
+
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
                 <Link to={'/videos?category=free'}>Free Videos</Link>
               </Button>
-              <Button onClick={onClose} variant={'ghost'} colorScheme='purple'>
+
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
                 <Link to={'/upload'}>Upload Video</Link>
               </Button>
             </VStack>
+
             <HStack
               pos={'absolute'}
               bottom={'10'}
@@ -60,18 +82,22 @@ const Header = () => {
               w={'full'}
               justifyContent={'space-evenly'}
             >
-              <Button onClick={onClose} colorScheme='purple'>
+              <Button onClick={onClose} colorScheme={'purple'}>
                 <Link to={'/login'}>Log In</Link>
               </Button>
-              <Button onClick={onClose} colorScheme='purple' variant={'outline'}>
-                <Link to={'signup'}>Sign Up</Link>
+              <Button
+                onClick={onClose}
+                colorScheme={'purple'}
+                variant={'outline'}
+              >
+                <Link to={'/signup'}>Sign Up</Link>
               </Button>
             </HStack>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
